@@ -1,0 +1,234 @@
+{
+  "info": {
+    "_postman_id": "b6a38211-83d1-4a7b-92c0-74523a830240",
+    "name": "Bookstore Inventory API",
+    "description": "Colección de endpoints REST para la gestión de inventario de librería y cálculo de precios.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "book_id",
+      "value": "1",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Create Book",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Clean Architecture\",\n  \"author\": \"Robert C. Martin\",\n  \"isbn\": \"978-0134494166\",\n  \"cost_usd\": 15.99,\n  \"stock_quantity\": 8,\n  \"category\": \"Software Engineering\",\n  \"supplier_country\": \"US\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/books",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "books"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "List Books",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/books",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "books"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1",
+              "disabled": true
+            },
+            {
+              "key": "page_size",
+              "value": "10",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Book by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/books/{{book_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "books",
+            "{{book_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Book (PUT)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Clean Architecture (Updated)\",\n  \"author\": \"Robert C. Martin\",\n  \"isbn\": \"978-0134494166\",\n  \"cost_usd\": 18.50,\n  \"stock_quantity\": 15,\n  \"category\": \"Software Engineering\",\n  \"supplier_country\": \"US\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/books/{{book_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "books",
+            "{{book_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Partial Update Book (PATCH)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"stock_quantity\": 5\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/books/{{book_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "books",
+            "{{book_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Book",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/books/{{book_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "books",
+            "{{book_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Search Books by Category",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/books/search?category=Software Engineering",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "books",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "category",
+              "value": "Software Engineering"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Low Stock Books",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/books/low-stock?threshold=10",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "books",
+            "low-stock"
+          ],
+          "query": [
+            {
+              "key": "threshold",
+              "value": "10"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Calculate Suggested Price",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/books/{{book_id}}/calculate-price",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "books",
+            "{{book_id}}",
+            "calculate-price"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
