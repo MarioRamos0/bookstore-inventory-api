@@ -1,0 +1,8 @@
+django
+djangorestframework
+psycopg2-binary
+django-cors-headers
+requests
+drf-spectacular
+python-dotenv
+pytest-django
